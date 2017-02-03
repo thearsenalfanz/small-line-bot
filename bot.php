@@ -67,10 +67,7 @@ if (!is_null($events['events'])) {
 			}
 			else
 			{
-					ob_start();
-					var_dump($event);
-					$txt = ob_get_clean();
-					$reply = $txt;
+					$reply = "else";
 					$messages = [
 					'type' => 'text',
 					'text' => $reply
