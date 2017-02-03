@@ -3,4 +3,6 @@ api_version: 1
 
 handlers:
 - url: /.*
-  script: index.php
+  script: bot.php
+- url: /images
+  static_dir: images 
