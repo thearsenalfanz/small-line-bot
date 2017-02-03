@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message') {
 			// Get replyToken
 			$replyToken = $event['replyToken'];	
-			
+
 			if($event['message']['type'] == 'text')
 			{
 				// Get text sent
@@ -100,4 +100,42 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
+
+$messages = [
+{			
+	'type' => 'image',
+	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
+	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+},
+{
+	'type' => 'image',
+	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
+	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+},
+{
+	'type' => 'image',
+	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+}
+
+
+			$url = 'https://api.line.me/v2/bot/message/push';
+			$data = [
+				'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			echo $result . "\r\n";
+
+
+
 echo "No error";
