@@ -1,6 +1,5 @@
 <?php
 $access_token = 'P3avdIxyxnYbA4xJmyGCWyD2zg5Yi785QZIKdXNajsJV/t8zQKRqfLus2MmwarjTq8jUlLtx1p/YhF+R7tRCv0aQOia3KQhIkPR2PL45xst9NCURrzMXPoVqI0oVFZ1To6tHwSwCeJg0QuXo7HyYuAdB04t89/1O/w1cDnyilFU=';
-
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -9,7 +8,6 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
-
 		ob_start();
 		var_dump($event);
 		$txt = ob_get_clean();
@@ -18,17 +16,16 @@ if (!is_null($events['events'])) {
 		'type' => 'text',
 		'text' => $reply
 		];	
-
 		if ($event['type'] == 'message') {
-
+			// Get replyToken
+			$replyToken = $event['replyToken'];	
+			
 			if($event['message']['type'] == 'text')
 			{
 				// Get text sent
 				$text = $event['message']['text'];
-				// Get replyToken			
-				$replyToken = $event['replyToken'];	
+				
 				// Build message to reply back
-
 				if (strtolower($text) == 'cpu') {
 					$reply = 'cpu\'s status';
 					$messages = [					
@@ -71,7 +68,6 @@ if (!is_null($events['events'])) {
 					'text' => $reply
 					];
 				}
-
 			}
 			else if($event['message']['type'] == 'sticker')
 			{
@@ -84,7 +80,6 @@ if (!is_null($events['events'])) {
 					'text' => $reply
 					];				
 			}
-
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -93,7 +88,6 @@ if (!is_null($events['events'])) {
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -102,10 +96,8 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
 			echo $result . "\r\n";
 		}
-
 	}
 }
 echo "No error";
