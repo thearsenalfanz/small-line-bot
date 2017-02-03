@@ -101,22 +101,11 @@ if (!is_null($events['events'])) {
 	}
 }
 
-$messages = [
-{			
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
-},
-{
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
-},
-{
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
-}
+					$messages = [					
+					'type' => 'image',
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					];
 
 
 			$url = 'https://api.line.me/v2/bot/message/push';
