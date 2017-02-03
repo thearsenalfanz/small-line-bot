@@ -65,7 +65,7 @@ if (!is_null($events['events'])) {
 				}
 
 			}
-			else if($event['message']['type'] == 'sticker')
+			else
 			{
 					ob_start();
 					var_dump($event);
