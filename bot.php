@@ -10,44 +10,72 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if (true) {
-			// Get text sent
-			if(isset($event['message']['text']))
-				$text = $event['message']['text'];
-			else
-				$text = 'test';
-			// Get replyToken
-			$replyToken = $event['replyToken'];
 
-			// Build message to reply back
-			if (strtolower($text) == 'cpu') {
-				$reply = 'cpu\'s status';
-				$messages = [					
-					'type' => 'image',
-					'originalContentUrl' => 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg',
-					'previewImageUrl'=> 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg'
-				];
-			}
-			else if (strtolower($text) == 'version')
+		if ($event['type'] == 'message') {
+
+			if($event['message']['type'] == 'text')
 			{
-				$reply = 'version 0.6, 13 Nov 2016';
-				$messages = [
-					'type' => 'text',
-					'text' => $reply
-				];
-			}
+				// Get text sent
+				$text = $event['message']['text'];
+				// Get replyToken			
+				$replyToken = $event['replyToken'];	
+				// Build message to reply back
 
-			else {
-				ob_start();
-				var_dump($event);
-				$txt = ob_get_clean();
-				$reply = $txt;
-				$messages = [
+				if (strtolower($text) == 'cpu') {
+					$reply = 'cpu\'s status';
+					$messages = [					
+					'type' => 'image',
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+					];
+				}
+				else if (strtolower($text) == 'user') {
+					$reply = 'cpu\'s status';
+					$messages = [					
+					'type' => 'image',
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+					];
+				}
+				else if (strtolower($text) == 'work process') {
+					$reply = 'cpu\'s status';
+					$messages = [					
+					'type' => 'image',
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					];
+				}
+				else if (strtolower($text) == 'version')
+				{
+					$reply = 'version 0.6, 13 Nov 2016';
+					$messages = [
 					'type' => 'text',
 					'text' => $reply
-				];
+					];
+				}
+				else {
+					ob_start();
+					var_dump($event);
+					$txt = ob_get_clean();
+					$reply = $txt;
+					$messages = [
+					'type' => 'text',
+					'text' => $reply
+					];
+				}
+
 			}
-			
+			else if($event['message']['type'] == 'sticker')
+			{
+					ob_start();
+					var_dump($event);
+					$txt = ob_get_clean();
+					$reply = $txt;
+					$messages = [
+					'type' => 'text',
+					'text' => $reply
+					];				
+			}
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
@@ -71,4 +99,4 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-echo "OK";
+echo "No error";
