@@ -3,7 +3,6 @@ $access_token = 'P3avdIxyxnYbA4xJmyGCWyD2zg5Yi785QZIKdXNajsJV/t8zQKRqfLus2Mmwarj
 
 // Get POST body content
 $content = file_get_contents('php://input');
-
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
@@ -28,14 +27,15 @@ if (!is_null($events['events'])) {
 			}
 			else if (strtolower($text) == 'version')
 			{
-				$reply = 'version 0.1 Beta, 13 Jan 2017';
+				$reply = 'version 0.6, 13 Nov 2016';
 				$messages = [
 					'type' => 'text',
 					'text' => $reply
 				];
 			}
+
 			else {
-				$reply = var_dump($event);
+				$reply = $text;
 				$messages = [
 					'type' => 'text',
 					'text' => $reply
