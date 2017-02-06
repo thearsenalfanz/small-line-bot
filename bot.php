@@ -7,15 +7,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
-	foreach ($events['events'] as $event) {
-		ob_start();
-		var_dump($event);
-		$txt = ob_get_clean();
-		$reply = $txt;
-		$messages = [
-		'type' => 'text',
-		'text' => $reply
-		];	
+	foreach ($events['events'] as $event) {	
 		if ($event['type'] == 'message') {
 			// Get replyToken
 			$replyToken = $event['replyToken'];	
