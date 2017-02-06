@@ -93,42 +93,32 @@ if (!is_null($events['events'])) {
 }
 if (isset($_GET['push']) && $_GET['push'] == 1)
 {
-	$m1 = [
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
-	];
-	$m2 = [
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
-	];
-	$m3 = [
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
-	];
-	$messages = array($m1, $m2, $m3);
-	// $reply = (string)isset($_GET['push']).' '.(string)$_GET['push'];
-	// $messages = [
-	// 'type' => 'text',
-	// 'text' => $reply
-	// ];
-	$url = 'https://api.line.me/v2/bot/message/push';
-	$data = [
-	'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
-	'messages' => [$messages],
-	];
-	$post = json_encode($data);
-	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	echo $result . "\r\n";
+	$path = 'https://basis-line-bot.herokuapp.com/images/';
+	$filename = array('CPU.png','USR.png','WP.png');
+
+	for($i=0; $i<3; $i++)
+	{
+		$messages = [
+		'type' => 'image',
+		'originalContentUrl' => $path.$filename[$i],
+		'previewImageUrl'=> $path.$filename[$i]
+		];
+		$url = 'https://api.line.me/v2/bot/message/push';
+		$data = [
+		'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
+		'messages' => [$messages],
+		];
+		$post = json_encode($data);
+		$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		echo $result . "\r\n";
+		}
 }
 echo "No error";
