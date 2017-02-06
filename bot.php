@@ -7,7 +7,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
-	foreach ($events['events'] as $event) {	
+	foreach ($events['events'] as $event) {
 		if ($event['type'] == 'message') {
 			// Get replyToken
 			$replyToken = $event['replyToken'];	
@@ -93,11 +93,22 @@ if (!is_null($events['events'])) {
 }
 if (isset($_GET['push']) && $_GET['push'] == 1)
 {
-	$messages = [
+	$m1 = [
+	'type' => 'image',
+	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
+	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+	];
+	$m2 = [
+	'type' => 'image',
+	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
+	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+	];
+	$m3 = [
 	'type' => 'image',
 	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
 	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
 	];
+	$messages = array($m1, $m2, $m3);
 	// $reply = (string)isset($_GET['push']).' '.(string)$_GET['push'];
 	// $messages = [
 	// 'type' => 'text',
