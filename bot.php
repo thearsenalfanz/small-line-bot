@@ -102,10 +102,15 @@ if (!is_null($events['events'])) {
 }
 if (isset($_GET['push']) && $_GET['push'] = 1)
 {
+	// $messages = [
+	// 'type' => 'image',
+	// 'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+	// 'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+	// ];
+	$reply = (string)isset($_GET['push'].' '.(string)$_GET['push'];
 	$messages = [
-	'type' => 'image',
-	'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-	'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+	'type' => 'text',
+	'text' => $reply
 	];
 	$url = 'https://api.line.me/v2/bot/message/push';
 	$data = [
