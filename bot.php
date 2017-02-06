@@ -71,15 +71,15 @@ if (!is_null($events['events'])) {
 			}
 			else if($event['message']['type'] == 'sticker')
 			{
-				$packages = array(1,1,1,1,1,2,2,2,2,2,3,3,3,3);
-				$stickers = array(13,106,125,137,138,159,167,171,172,525,180,182,184,200);
+				$packages = array('1','1','1','1','1','2','2','2','2','2','3','3','3','3');
+				$stickers = array('13','106','125','137','138','159','167','171','172','525','180','182','184','200');
 				$id = rand(1,14);
 
-					$messages = [
-					'type' => 'sticker',
-					'packageId': $packages[$id],
-					'stickerId': $stickers[[$id]
-					];				
+				$messages = [
+				'type' => 'sticker',
+				'packageId': $packages[$id],
+				'stickerId': $stickers[[$id]
+				];				
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
