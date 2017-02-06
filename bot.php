@@ -107,7 +107,7 @@ if (isset($_GET['push']) && $_GET['push'] = 1)
 	// 'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
 	// 'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
 	// ];
-	$reply = (string)isset($_GET['push'].' '.(string)$_GET['push'];
+	$reply = (string)isset($_GET['push']).' '.(string)$_GET['push'];
 	$messages = [
 	'type' => 'text',
 	'text' => $reply
