@@ -29,24 +29,24 @@ if (!is_null($events['events'])) {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png'
 					];
 				}
 				else if (strtolower($text) == 'user') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png'
 					];
 				}
 				else if (strtolower($text) == 'work process') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png'
 					];
 				}
 				else if (strtolower($text) == 'version')
