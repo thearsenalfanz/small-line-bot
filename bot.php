@@ -58,7 +58,9 @@ if (!is_null($events['events'])) {
 					];
 				}
 				else {
-					$reply = 'พิมพ์ cpu เพื่อดูปริมาณการใช้งาน cpu\nพิมพ์ user เพื่อดูจำนวน user ที่ log on\nพิมพ์ work process หรือ wp เพื่อดูจำนวน work process';
+					$reply = 'พิมพ์ cpu เพื่อดูปริมาณการใช้งาน cpu |
+					พิมพ์ user เพื่อดูจำนวน user ที่ log on | 
+					พิมพ์ work process หรือ wp เพื่อดูจำนวน work process';
 					$messages = [
 					'type' => 'text',
 					'text' => $reply
