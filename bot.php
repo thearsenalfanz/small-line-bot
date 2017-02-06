@@ -30,24 +30,24 @@ if (!is_null($events['events'])) {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0'
 					];
 				}
 				else if (strtolower($text) == 'user') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0'
 					];
 				}
 				else if (strtolower($text) == 'work process') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0',
+					'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0'
 					];
 				}
 				else if (strtolower($text) == 'version')
@@ -71,13 +71,14 @@ if (!is_null($events['events'])) {
 			}
 			else if($event['message']['type'] == 'sticker')
 			{
-					ob_start();
-					var_dump($event);
-					$txt = ob_get_clean();
-					$reply = $txt;
+				$packages = array(1,1,1,1,1,2,2,2,2,2,3,3,3,3);
+				$stickers = array(13,106,125,137,138,159,167,171,172,525,180,182,184,200);
+				$id = rand(1,14);
+
 					$messages = [
-					'type' => 'text',
-					'text' => $reply
+					'type' => 'sticker',
+					'packageId': $packages[$id],
+					'stickerId': $stickers[[$id]
 					];				
 			}
 			// Make a POST Request to Messaging API to reply to sender
@@ -101,30 +102,43 @@ if (!is_null($events['events'])) {
 	}
 }
 
-					$messages = [					
-					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
-					];
+if (isset($_GET['push']) && $_GET['push'] = 1)
+{
+	$messages = [{			
+		'type' => 'image',
+		'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0',
+		'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0'
+	},
+	{
+		'type' => 'image',
+		'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0',
+		'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0'
+	},
+	{
+		'type' => 'image',
+		'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0',
+		'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0'
+	}];
 
 
-			$url = 'https://api.line.me/v2/bot/message/push';
-			$data = [
-				'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-			echo $result . "\r\n";
+	$url = 'https://api.line.me/v2/bot/message/push';
+	$data = [
+	'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
+	'messages' => [$messages],
+	];
+	$post = json_encode($data);
+	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	echo $result . "\r\n";
 
+}
 
 
 echo "No error";
