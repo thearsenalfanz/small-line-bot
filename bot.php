@@ -29,24 +29,24 @@ if (!is_null($events['events'])) {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png',
-					'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png'
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
 					];
 				}
 				else if (strtolower($text) == 'user') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png',
-					'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png'
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
 					];
 				}
 				else if (strtolower($text) == 'work process') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png',
-					'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png'
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
 					];
 				}
 				else if (strtolower($text) == 'version')
@@ -70,14 +70,15 @@ if (!is_null($events['events'])) {
 			}
 			else if($event['message']['type'] == 'sticker')
 			{
-					ob_start();
-					var_dump($event);
-					$txt = ob_get_clean();
-					$reply = $txt;
-					$messages = [
-					'type' => 'text',
-					'text' => $reply
-					];				
+				$packages = array('1','1','1','1','1','2','2','2','2','2','3','3','3','3');
+				$stickers = array('13','106','125','137','138','159','167','171','172','525','180','182','184','200');
+				$id = rand(1,14);
+
+				$messages = [
+				'type' => 'sticker',
+				'packageId' => $packages[$id],
+				'stickerId' => $stickers[$id]
+				];			
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
