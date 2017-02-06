@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
 					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
 					];
 				}
-				else if (strtolower($text) == 'work process') {
+				else if (strtolower($text) == 'work process' || strtolower($text) == 'wp') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
@@ -58,10 +58,7 @@ if (!is_null($events['events'])) {
 					];
 				}
 				else {
-					ob_start();
-					var_dump($event);
-					$txt = ob_get_clean();
-					$reply = $txt;
+					$reply = 'พิมพ์ cpu เพื่อดูปริมาณการใช้งาน cpu\nพิมพ์ user เพื่อดูจำนวน user ที่ log on\nพิมพ์ work process หรือ wp เพื่อดูจำนวน work process';
 					$messages = [
 					'type' => 'text',
 					'text' => $reply
