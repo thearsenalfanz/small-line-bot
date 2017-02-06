@@ -19,7 +19,6 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message') {
 			// Get replyToken
 			$replyToken = $event['replyToken'];	
-
 			if($event['message']['type'] == 'text')
 			{
 				// Get text sent
@@ -71,15 +70,14 @@ if (!is_null($events['events'])) {
 			}
 			else if($event['message']['type'] == 'sticker')
 			{
-				$packages = array('1','1','1','1','1','2','2','2','2','2','3','3','3','3');
-				$stickers = array('13','106','125','137','138','159','167','171','172','525','180','182','184','200');
-				$id = rand(1,14);
-
-				$messages = [
-				'type' => 'sticker',
-				'packageId' => $packages[$id],
-				'stickerId' => $stickers[$id]
-				];			
+					ob_start();
+					var_dump($event);
+					$txt = ob_get_clean();
+					$reply = $txt;
+					$messages = [
+					'type' => 'text',
+					'text' => $reply
+					];				
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
@@ -101,44 +99,25 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-
-if (isset($_GET['push']) && $_GET['push'] = 1)
-{
-	$messages = [{			
-		'type' => 'image',
-		'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0',
-		'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0'
-	},
-	{
-		'type' => 'image',
-		'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0',
-		'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0'
-	},
-	{
-		'type' => 'image',
-		'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0',
-		'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0'
-	}];
-
-
-	$url = 'https://api.line.me/v2/bot/message/push';
-	$data = [
-	'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
-	'messages' => [$messages],
-	];
-	$post = json_encode($data);
-	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	echo $result . "\r\n";
-
-}
-
-
+					$messages = [					
+					'type' => 'image',
+					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
+					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					];
+			$url = 'https://api.line.me/v2/bot/message/push';
+			$data = [
+				'to' => 'Ue39b5f714f4424cb448ba4f6550bda5c',
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			echo $result . "\r\n";
 echo "No error";
