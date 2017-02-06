@@ -104,21 +104,21 @@ if (!is_null($events['events'])) {
 
 if (isset($_GET['push']) && $_GET['push'] = 1)
 {
-	$messages = [[	
+	$messages = [{			
 		'type' => 'image',
 		'originalContentUrl' => 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0',
 		'previewImageUrl'=> 'https://www.dropbox.com/s/nuk5hm2mj5431rn/CPU.png?dl=0'
-	],
-	[
+	},
+	{
 		'type' => 'image',
 		'originalContentUrl' => 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0',
 		'previewImageUrl'=> 'https://www.dropbox.com/s/lu5auw3a7vdm0wf/USR.png?dl=0'
-	],
-	[
+	},
+	{
 		'type' => 'image',
 		'originalContentUrl' => 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0',
 		'previewImageUrl'=> 'https://www.dropbox.com/s/8fxki5fdjlw4040/WP.png?dl=0'
-	]];
+	}];
 
 
 	$url = 'https://api.line.me/v2/bot/message/push';
