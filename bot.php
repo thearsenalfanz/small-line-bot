@@ -15,30 +15,31 @@ if (!is_null($events['events'])) {
 			{
 				// Get text sent
 				$text = $event['message']['text'];
+				$path = 'https://mc.egat.co.th/line/images/';
 				
 				// Build message to reply back
 				if (strtolower($text) == 'cpu') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/CPU.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/CPU.png'
+					'originalContentUrl' => $path.'CPU.png',
+					'previewImageUrl'=> $path.'CPU.png'
 					];
 				}
 				else if (strtolower($text) == 'user') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/USR.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/USR.png'
+					'originalContentUrl' => $path.'USR.png',
+					'previewImageUrl'=> $path.'USR.png'
 					];
 				}
 				else if (strtolower($text) == 'work process' || strtolower($text) == 'wp') {
 					$reply = 'cpu\'s status';
 					$messages = [					
 					'type' => 'image',
-					'originalContentUrl' => 'https://basis-line-bot.herokuapp.com/images/WP.png',
-					'previewImageUrl'=> 'https://basis-line-bot.herokuapp.com/images/WP.png'
+					'originalContentUrl' => $path.'WP.png',
+					'previewImageUrl'=> $path.'WP.png'
 					];
 				}
 				else if (strtolower($text) == 'version')
@@ -93,7 +94,7 @@ if (!is_null($events['events'])) {
 }
 if (isset($_GET['push']) && $_GET['push'] == 1)
 {
-	$path = 'https://basis-line-bot.herokuapp.com/images/';
+	$path = 'https://mc.egat.co.th/line/images/';
 	$filename = array('CPU.png','USR.png','WP.png');
 
 	for($i=0; $i<3; $i++)
